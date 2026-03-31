@@ -1,13 +1,14 @@
 [package]
 name = "redline-decode"
-version = "0.1.0"
+version = "0.1.1"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
 description = "CLI tool to decode redline binary logs into NDJSON"
+readme = "README.md"
 
 [dependencies]
 itoa = "1.0"
-redline-core = { version = "0.1.0", path = "../redline-core" }
+redline-core = { version = "0.1.1", path = "../redline-core" }
 ryu = "1.0"
 tracing-core = "0.1"

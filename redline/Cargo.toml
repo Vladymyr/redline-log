@@ -1,10 +1,11 @@
 [package]
 name = "redline-log"
-version = "0.1.0"
+version = "0.1.1"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
 description = "Fast structured logging for tracing"
+readme = "README.md"
 
 [lib]
 name = "redline"
@@ -12,7 +13,7 @@ name = "redline"
 [dependencies]
 crossbeam-queue = "0.3"
 parking_lot = "0.12"
-redline-core = { version = "0.1.0", path = "../redline-core" }
+redline-core = { version = "0.1.1", path = "../redline-core" }
 rustc-hash = "2.1"
 smallvec = "1.13"
 tracing = { version = "0.1", default-features = false, features = ["std"] }

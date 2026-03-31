@@ -1,14 +1,15 @@
 [package]
 name = "redline-layer"
-version = "0.1.0"
+version = "0.1.1"
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
 description = "tracing-subscriber layer for redline logging"
+readme = "README.md"
 
 [dependencies]
-redline = { package = "redline-log", version = "0.1.0", path = "../redline" }
-redline-core = { version = "0.1.0", path = "../redline-core" }
+redline = { package = "redline-log", version = "0.1.1", path = "../redline" }
+redline-core = { version = "0.1.1", path = "../redline-core" }
 smallvec = "1.13"
 tracing = { version = "0.1", default-features = false, features = ["std"] }
 tracing-core = "0.1"
