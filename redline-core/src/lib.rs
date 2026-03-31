@@ -23,8 +23,8 @@ pub use encode::{
 };
 pub use filter::{Directive, FilterParseError, TargetFilter};
 pub use record::{
-    FieldCapture, FieldValue, InlineString, OwnedField, OwnedFields, OwnedRecord, SpanSnapshot, Timestamp,
-    capture_record_fields, capture_span_fields, merge_fields,
+    FieldCapture, FieldValue, InlineString, OwnedField, OwnedFields, OwnedRecord, SpanSnapshot,
+    Timestamp, capture_record_fields, capture_span_fields, merge_fields,
 };
 
 #[cfg(test)]

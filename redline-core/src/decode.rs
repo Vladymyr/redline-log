@@ -53,6 +53,7 @@ pub struct DecodedRecord {
 
 /// Decoded binary frame.
 #[derive(Clone, Debug, PartialEq)]
+#[allow(clippy::large_enum_variant)]
 pub enum DecodedBinaryFrame {
     Metadata(DecodedCallsiteMetadata),
     Event(DecodedRecord),

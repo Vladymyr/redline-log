@@ -21,7 +21,7 @@ mod sink;
 mod subscriber;
 
 pub use config::{Builder, Handle, InstallError, Sink, Stats};
-pub use redline_core::{EncodeConfig, FilterParseError, OutputFormat, TargetFilter};
 #[doc(hidden)]
 pub use pipeline::RedlinePipeline;
+pub use redline_core::{EncodeConfig, FilterParseError, OutputFormat, TargetFilter};
 pub use subscriber::RedlineSubscriber;

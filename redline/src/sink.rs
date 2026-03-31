@@ -94,7 +94,7 @@ pub(crate) fn build_sender(
         .name("redline-sink".into())
         .stack_size(256 * 1024)
         .spawn(move || run_worker(writer, receiver, worker_pool, stats))
-        .map_err(|error| io::Error::new(io::ErrorKind::Other, error))?;
+        .map_err(io::Error::other)?;
     Ok((sender, frame_pool))
 }
 

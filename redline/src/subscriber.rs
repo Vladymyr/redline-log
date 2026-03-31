@@ -1,8 +1,6 @@
 use std::{
     cell::RefCell,
-    sync::{
-        atomic::{AtomicU64, Ordering},
-    },
+    sync::atomic::{AtomicU64, Ordering},
 };
 
 use parking_lot::RwLock;
@@ -19,10 +17,7 @@ use tracing_core::{
     subscriber::{Interest, Subscriber},
 };
 
-use crate::{
-    config::Handle,
-    pipeline::RedlinePipeline,
-};
+use crate::{config::Handle, pipeline::RedlinePipeline};
 
 thread_local! {
     static CURRENT_SPANS: RefCell<SmallVec<[u64; 8]>> = RefCell::new(SmallVec::new());
@@ -217,11 +212,11 @@ impl Subscriber for RedlineSubscriber {
     fn try_close(&self, id: Id) -> bool {
         let mut spans = self.spans.write();
         let key = id.into_u64();
-        if let Some(data) = spans.entries.get_mut(&key) {
-            if data.refs > 1 {
-                data.refs -= 1;
-                return false;
-            }
+        if let Some(data) = spans.entries.get_mut(&key)
+            && data.refs > 1
+        {
+            data.refs -= 1;
+            return false;
         }
         spans.entries.remove(&key).is_some()
     }

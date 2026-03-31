@@ -118,12 +118,12 @@ pub fn encode_ndjson_record(config: EncodeConfig, record: &OwnedRecord, out: &mu
     out.extend_from_slice(KEY_FIELDS);
     push_fields_object(out, &record.fields);
 
-    if config.include_current_span {
-        if let Some(span) = &record.current_span {
-            out.push(b',');
-            out.extend_from_slice(KEY_SPAN);
-            push_span(out, span);
-        }
+    if config.include_current_span
+        && let Some(span) = &record.current_span
+    {
+        out.push(b',');
+        out.extend_from_slice(KEY_SPAN);
+        push_span(out, span);
     }
 
     if config.include_span_list {
@@ -393,7 +393,7 @@ fn reserve_length(out: &mut Vec<u8>) -> usize {
     offset
 }
 
-fn write_length(out: &mut Vec<u8>, len_offset: usize) {
+fn write_length(out: &mut [u8], len_offset: usize) {
     let len = (out.len() - len_offset - 4) as u32;
     out[len_offset..len_offset + 4].copy_from_slice(&len.to_le_bytes());
 }
@@ -496,11 +496,11 @@ fn estimate_ndjson_record_len(config: EncodeConfig, record: &OwnedRecord) -> usi
     let mut estimate = 96 + record.target.len() + record.name.len();
     estimate += estimate_fields_len(&record.fields);
 
-    if config.include_current_span {
-        if let Some(span) = &record.current_span {
-            estimate += 64 + span.target.len() + span.name.len();
-            estimate += estimate_fields_len(&span.fields);
-        }
+    if config.include_current_span
+        && let Some(span) = &record.current_span
+    {
+        estimate += 64 + span.target.len() + span.name.len();
+        estimate += estimate_fields_len(&span.fields);
     }
 
     if config.include_span_list {
@@ -538,8 +538,8 @@ fn needs_json_escape(byte: u8) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use alloc::string::String;
     use crate::record::{FieldValue, OwnedField, OwnedRecord, Timestamp};
+    use alloc::string::String;
     use smallvec::smallvec;
 
     #[test]

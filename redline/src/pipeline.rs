@@ -11,12 +11,7 @@ use redline_core::{
 };
 use rustc_hash::FxHashMap;
 use smallvec::SmallVec;
-use tracing_core::{
-    Metadata,
-    callsite::Identifier,
-    metadata::LevelFilter,
-    subscriber::Interest,
-};
+use tracing_core::{Metadata, callsite::Identifier, metadata::LevelFilter, subscriber::Interest};
 
 use crate::{
     config::{Handle, SharedStats},
