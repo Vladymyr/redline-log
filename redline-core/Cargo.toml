@@ -1,0 +1,16 @@
+[package]
+name = "redline-core"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Core encoding, filtering, and record capture for redline"
+
+[features]
+default = []
+
+[dependencies]
+itoa = "1.0"
+ryu = "1.0"
+smallvec = { version = "1.13", default-features = false }
+tracing-core = { version = "0.1", default-features = false }
